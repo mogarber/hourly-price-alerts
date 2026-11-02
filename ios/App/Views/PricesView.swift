@@ -92,16 +92,20 @@ struct PricesView: View {
     private func latestRow(latest: PriceSample) -> some View {
         let band = PriceBand(cents: latest.cents)
         return VStack(alignment: .leading, spacing: 4) {
-            HStack(alignment: .firstTextBaseline) {
-                Text("Latest 5-minute price")
-                    .font(.subheadline)
-                Spacer()
-                Text(PriceFormat.cents(latest.cents))
-                    .font(.title3.weight(.semibold))
-                    .monospacedDigit()
-                Text(band.label)
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(band.color)
+            // Large text sizes don't fit on one line, and a band label must never break mid-word.
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Latest 5-minute price")
+                        .font(.subheadline)
+                        .fixedSize()
+                    Spacer()
+                    latestValue(latest: latest, band: band)
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Latest 5-minute price")
+                        .font(.subheadline)
+                    latestValue(latest: latest, band: band)
+                }
             }
             if let snapshot = model.prices.snapshot {
                 Text("Reading from \(TimeText.stamp(latest.stamp)). Checked \(TimeText.stamp(snapshot.fetchedAt)).")
@@ -114,6 +118,18 @@ struct PricesView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Latest 5-minute price")
         .accessibilityValue("\(PriceFormat.spoken(latest.cents)), \(band.label), reading from \(TimeText.stamp(latest.stamp))")
+    }
+
+    private func latestValue(latest: PriceSample, band: PriceBand) -> some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(PriceFormat.cents(latest.cents))
+                .font(.title3.weight(.semibold))
+                .monospacedDigit()
+            Text(band.label)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(band.color)
+        }
+        .fixedSize()
     }
 
     private var footer: some View {

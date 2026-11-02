@@ -72,6 +72,7 @@ struct SettingsView: View {
                 Section("Privacy") {
                     Text("Prices are fetched straight from ComEd by this app. If you create alerts, the alert service stores a random install ID, your iPhone's push token and time zone, and your alert settings. It stores no name, email or location, and there is no account. Delete my data removes all of it.")
                         .font(.footnote)
+                    Link("Privacy policy", destination: AppConfig.privacyPolicyURL)
                 }
 
                 Section {

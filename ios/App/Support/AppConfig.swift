@@ -14,6 +14,7 @@ struct AppConfig {
     var alertsAvailable: Bool { isMockBackend || apiBaseURL != nil }
 
     static let sourceCodeURL = URL(string: "https://github.com/mogarber/hourly-price-alerts")!
+    static let privacyPolicyURL = URL(string: "https://github.com/mogarber/hourly-price-alerts/blob/main/docs/PRIVACY.md")!
 
     static func load(bundle: Bundle = .main, arguments: [String] = ProcessInfo.processInfo.arguments) -> AppConfig {
         let raw = (bundle.object(forInfoDictionaryKey: "HPAApiBaseURL") as? String)?
