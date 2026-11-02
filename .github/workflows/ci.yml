@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build backend/HourlyPriceAlerts.sln --configuration Release
+
+      - name: Test
+        run: dotnet test backend/HourlyPriceAlerts.sln --configuration Release --no-build
+
+  ios-package:
+    name: HourlyPriceKit tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: swift test
+        working-directory: ios/Packages/HourlyPriceKit
+        run: swift test

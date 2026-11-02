@@ -1,0 +1,14 @@
+// Copy this file to Config/Local.xcconfig (git-ignored) and edit.
+// Then run `xcodegen generate` and rebuild.
+
+// Your 10-character Apple Developer Team ID (developer.apple.com > Membership).
+// Push notifications need a paid Apple Developer Program membership and a real device.
+DEVELOPMENT_TEAM = ABCDE12345
+
+// A reverse-DNS prefix you own. The app bundle id becomes $(BUNDLE_ID_PREFIX).hourlypricealerts, which must
+// match the Apns__BundleId setting of your backend.
+BUNDLE_ID_PREFIX = com.yourname
+
+// Base URL of your deployed Azure Function app. In an xcconfig "//" starts a comment, so write
+// https:// as https:/$()/ . Include the trailing /api (it is added for you if you leave it out).
+API_BASE_URL = https:/$()/your-function-app.azurewebsites.net/api

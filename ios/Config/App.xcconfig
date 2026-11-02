@@ -1,0 +1,22 @@
+// Shared build settings for Hourly Price Alerts.
+//
+// The app builds and runs in the iOS Simulator without a paid Apple Developer account. Push
+// notifications need a paid team and a real device. To configure your own build, copy
+// Config/Local.xcconfig.example to Config/Local.xcconfig (git-ignored), fill it in, and run
+// `xcodegen generate`.
+
+BUNDLE_ID_PREFIX = io.github.mogarber
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).hourlypricealerts
+
+// The alert service. Empty means the Alerts tab shows "not configured" (prices still work).
+// In an xcconfig, "//" starts a comment, so write https:// as https:/$()/ .
+API_BASE_URL =
+
+// Value of the aps-environment entitlement: development for Debug, production for Release.
+APS_ENVIRONMENT = development
+APS_ENVIRONMENT[config=Release] = production
+
+CODE_SIGN_ENTITLEMENTS = Config/HourlyPriceAlerts.entitlements
+
+// Per-developer overrides (team, bundle id prefix, API_BASE_URL). Optional file.
+#include? "Local.xcconfig"
