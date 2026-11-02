@@ -72,10 +72,10 @@ Prices come from ComEd's public Hourly Pricing API (https://hourlypricing.comed.
 | Question | Answer |
 |---|---|
 | Data used to track you | None |
-| Identifiers, Device ID (install ID and push token) | Collected for App Functionality, not linked to identity |
-| Other Data (time zone and alert settings) | Collected for App Functionality, not linked to identity |
+| Identifiers, Device ID (install ID and push token) | Collected for App Functionality, linked to identity, not used for tracking |
+| Other Data (time zone and alert settings) | Collected for App Functionality, linked to identity, not used for tracking |
 | Everything else | Not collected |
 
 ## Screenshots
 
-Taken on the iPhone 18 Pro Max simulator (1320 x 2868).
+Taken on the iPhone 18 Pro simulator (1206 x 2622), the size App Store Connect asks for. It scales them for other iPhones.
