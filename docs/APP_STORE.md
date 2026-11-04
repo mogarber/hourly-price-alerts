@@ -60,11 +60,34 @@ Hourly Price Alerts is an independent app. It is not affiliated with or endorsed
 ## Review notes
 
 ```
-No login is required.
+PURPOSE AND AUDIENCE
+Hourly Price Alerts is a free, independent app for customers of ComEd's Hourly Pricing program (northern Illinois). On that program the electricity price changes every 5 minutes. The app shows the current price and notifies the user when it goes above or below a limit they set, or moves by an amount they set, so they can shift usage such as laundry or EV charging to cheaper times. Audience: adults enrolled in ComEd Hourly Pricing.
 
-To test alerts: open the Alerts tab, tap +, choose "Price goes above", choose "5-minute price", enter 0, and save. Allow notifications when asked. An alert arrives when the next price is published, usually within 10 minutes, as long as the price is above 0 cents. To test delivery right away, open Settings and tap "Send test notification".
+HOW TO TEST (no account, no login, no sample files)
+1. Open the app. The Prices tab shows live prices.
+2. Alerts tab > + > "Alert me when": Price goes below > Using: 5-minute price > Price: 100 > Save. Allow notifications when asked.
+3. A notification arrives when the next price is published, usually within 10 minutes. (Prices are almost always under 100 cents, so this alert always fires.)
+4. Settings > "Send test notification" delivers one immediately.
+5. Settings > "Delete my data" removes the device and its alerts from our server and clears the app's saved data.
+There is no account registration, user-generated content, or paid content, so no registration, reporting or blocking flows apply.
 
-Prices come from ComEd's public Hourly Pricing API (https://hourlypricing.comed.com/hp-api/), which does not require an account. "ComEd" appears only to describe compatibility. This is an independent app with no affiliation to ComEd, as the listing and the Settings screen state.
+SCREEN RECORDING
+Recorded on a physical iPhone running the latest iOS, starting from app launch. It is attached in the Attachment field of this section.
+
+EXTERNAL SERVICES
+- ComEd Hourly Pricing public API (hourlypricing.comed.com): the price data. The app reads it directly. No key or login.
+- Microsoft Azure (Functions, Table Storage): our server checks ComEd prices every minute, decides when an alert should fire, and stores an install ID, push token, time zone and the user's alert settings. No names, emails or location.
+- Apple Push Notification service: delivers the alerts.
+No other third-party services, SDKs, analytics, ads, authentication or payment services.
+
+REGIONS
+The app works the same everywhere it is available. We list it for the US only, because ComEd serves northern Illinois. The prices matter only to ComEd Hourly Pricing customers.
+
+THIRD-PARTY MATERIAL
+The only third-party material is ComEd's published price data. The app includes no ComEd logos, trademarks or text. ComEd publishes the data through a public API with published terms (https://hourlypricing.comed.com/comed-hourly-pricing-apis-terms-of-service/) that needs no registration or credentials. The app says on its Settings screen and in its listing that it is not affiliated with ComEd. We have no separate agreement with ComEd.
+
+NOT A REGULATED INDUSTRY
+The app gives information only and no financial, medical or legal services.
 ```
 
 ## App privacy answers
